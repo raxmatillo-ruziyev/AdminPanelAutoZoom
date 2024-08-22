@@ -62,7 +62,8 @@ const Login = () => {
                             span: 16,
                         }}
                         style={{
-                            maxWidth: 600,
+                            maxWidth: 500,
+                            fontSize:"20px",
                             margin: ' 150px auto',
                             boxShadow: '1px 1px 6px 1px  #00BFFF',
                             borderRadius: '10px',
@@ -78,7 +79,9 @@ const Login = () => {
                     >
                         <Form.Item
                         style={{
-                           marginLeft:'120px'
+                           marginLeft:'120px',
+                           fontSize:"20px"
+
                         }}
                             label="Phone nuber"
                             name="phone_number"
@@ -94,7 +97,7 @@ const Login = () => {
 
                         <Form.Item
                          style={{
-                            marginLeft:'120px'
+                            marginLeft:'120px',
                          }}
                             label="Password"
                             name="password"
@@ -105,14 +108,15 @@ const Login = () => {
                                 },
                             ]}
                         >
-                            <Input.Password onChange={(e) => setPassword(e.target.value)} />
+                            <Input.Password  onChange={(e) => setPassword(e.target.value)} />
                         </Form.Item>
 
 
 
                         <Form.Item
                          style={{
-                            marginLeft:'55px'
+                            marginLeft:'55px',
+                      
                          }}
                             wrapperCol={{
                                 offset: 8,
