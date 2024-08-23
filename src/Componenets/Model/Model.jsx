@@ -10,15 +10,15 @@ function Model() {
 
   const Url = 'https://autoapi.dezinfeksiyatashkent.uz/api/models';
   const BrandUrl = 'https://autoapi.dezinfeksiyatashkent.uz/api/brands';
-  const access_token =
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTczNzkzNTUtZDNjYi00NzY1LTgwMGEtNDZhOTU1NWJiOWQyIiwidG9rZW5fdHlwZSI6ImFjY2VzcyIsImlhdCI6MTcyMDA5NDM4MywiZXhwIjoxNzUxNjMwMzgzfQ.TCJEizDzsDtjme-0kbVRRGn_mrSa2aFLIpaCeTX1h00';
+
+    const token = localStorage.getItem("access_token");
 const navigate =useNavigate()
   // Fetch models
   const getModels = () => {
     fetch(Url)
       .then((response) => response.json())
       .then((res) => {
-       if (access_token) {
+       if (token) {
         const transformedData = res.data.map((entry, index) => ({
           ...entry,
           index: index + 1,
@@ -114,7 +114,7 @@ const navigate =useNavigate()
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${access_token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         name: values.name,
@@ -142,7 +142,7 @@ const navigate =useNavigate()
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${access_token}`,
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify({
         name: values.name,
@@ -176,7 +176,7 @@ const navigate =useNavigate()
     fetch(`${Url}/${id}`, {
       method: 'DELETE',
       headers: {
-        Authorization: `Bearer ${access_token}`,
+        Authorization: `Bearer ${token}`,
       },
     })
       .then((response) => response.json())
