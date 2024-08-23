@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {Button,Flex,Image,message,Table,Modal,Form,Input,Upload,Popconfirm} from "antd";
+import { useNavigate } from 'react-router-dom';
 
 const Location = () => {
   const [form] = Form.useForm();
@@ -11,7 +12,7 @@ const Location = () => {
   const [isEditMode, setIsEditMode] = useState(false);
   const [currentLocation, setCurrentLocation] = useState(null);
   const token = localStorage.getItem("access_token");
-
+const navigate =useNavigate()
   const normFile = (e) => {
     if (Array.isArray(e)) {
       return e;}
@@ -23,7 +24,11 @@ const Location = () => {
       fetch(locationUrl)
       .then((res)=>res.json())
       .then((data)=>{
-        setData(data.data)
+   if (token) {
+    setData(data.data)
+   } else {
+    navigate("/")
+   }
   
       })
       .catch((err)=>message.error(err))

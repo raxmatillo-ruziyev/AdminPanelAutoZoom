@@ -4,6 +4,7 @@ import { UploadOutlined } from '@ant-design/icons';
 
 
 import { Switch } from 'antd';
+import { useNavigate } from 'react-router-dom';
 
 
 const Cars = () => {
@@ -30,14 +31,18 @@ const Cars = () => {
   const [postImage2, setPostImage2] = useState(null);
   const [postImage3, setPostImage3] = useState(null);
   const token = localStorage.getItem("access_token");
-
+const navigate =useNavigate()
   const getData = () => {
     setLoader(true);
     fetch(CarsUrl)
       .then(res => res.json())
       .then(data => {
-        setData(data.data);
-        console.log(data.data[0].car_images[0].image.src);
+    if (token) {
+      setData(data.data);
+      console.log(data.data[0].car_images[0].image.src);
+    } else {
+      navigate("/")
+    }
       })
       .catch(err => message.error(err))
       .finally(() => setLoader(false));

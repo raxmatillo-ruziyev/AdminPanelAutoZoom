@@ -1,5 +1,6 @@
 import { Button, Table, Modal, Form, Input, Select, message, Popconfirm } from 'antd';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Model() {
   const [model, setModel] = useState([]);
@@ -11,17 +12,21 @@ function Model() {
   const BrandUrl = 'https://autoapi.dezinfeksiyatashkent.uz/api/brands';
   const access_token =
     'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNTczNzkzNTUtZDNjYi00NzY1LTgwMGEtNDZhOTU1NWJiOWQyIiwidG9rZW5fdHlwZSI6ImFjY2VzcyIsImlhdCI6MTcyMDA5NDM4MywiZXhwIjoxNzUxNjMwMzgzfQ.TCJEizDzsDtjme-0kbVRRGn_mrSa2aFLIpaCeTX1h00';
-
+const navigate =useNavigate()
   // Fetch models
   const getModels = () => {
     fetch(Url)
       .then((response) => response.json())
       .then((res) => {
+       if (access_token) {
         const transformedData = res.data.map((entry, index) => ({
           ...entry,
           index: index + 1,
         }));
         setModel(transformedData);
+       } else {
+        navigate("/")
+       }
       })
       .catch((error) => console.error('Error fetching models:', error));
   };

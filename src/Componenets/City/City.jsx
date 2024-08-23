@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {Button,Flex,Image,message,Table,Modal,Form,Input,Upload,Popconfirm} from "antd";
+import { useNavigate } from 'react-router-dom';
 
 const City = () => {
   const [form] = Form.useForm();
@@ -16,14 +17,18 @@ const City = () => {
       return e;}
     return e?.fileList;
   };
-
+const navigate =useNavigate()
   //GET
   const getData =()=>{
     setLoader(true)
     fetch(cityUrl)
     .then((res)=>res.json())
     .then((data)=>{
+     if (token) {
       setData(data.data)
+     } else {
+      navigate("/")
+     }
 
     })
     .catch((err)=>message.error(err))

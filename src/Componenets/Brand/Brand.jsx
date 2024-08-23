@@ -1,5 +1,6 @@
 import {Button,Flex,Image,message,Table,Modal,Form,Input,Upload,Popconfirm,} from "antd";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Brands() {
   const [form] = Form.useForm();
@@ -12,6 +13,8 @@ function Brands() {
   const [currentBrand, setCurrentBrand] = useState(null);
   const token = localStorage.getItem("access_token");
 
+
+  const navigate = useNavigate()
   const normFile = (e) => {
     if (Array.isArray(e)) {
       return e;}
@@ -24,7 +27,12 @@ function Brands() {
     fetch(brandsURL)
       .then((res) => res.json())
       .then((data) => {
-        setData(data.data);
+       if(token){
+        setData(data.data)
+       }
+       else{
+        navigate("/")
+       }
       })
       .catch((err) => message.error(err))
       .finally(() => setLoader(false));
