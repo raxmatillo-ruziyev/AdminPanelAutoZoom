@@ -31,22 +31,30 @@ const Cars = () => {
   const [postImage2, setPostImage2] = useState(null);
   const [postImage3, setPostImage3] = useState(null);
   const token = localStorage.getItem("access_token");
+
+
 const navigate =useNavigate()
-  const getData = () => {
-    setLoader(true);
-    fetch(CarsUrl)
-      .then(res => res.json())
-      .then(data => {
-    if (token) {
+const getData = async () => {
+  setLoader(true); // Loaderni bu yerda yoqamiz
+
+  try {
+    const response = await fetch(CarsUrl);
+    const data = await response.json();
+
+    if (token && data.data) { // Token va data.data mavjudligini tekshirish
       setData(data.data);
       console.log(data.data[0].car_images[0].image.src);
     } else {
-      navigate("/")
+      navigate("/");
     }
-      })
-      .catch(err => message.error(err))
-      .finally(() => setLoader(false));
-  };
+  } catch (err) {
+    message.error(err.toString());
+  } finally {
+    setLoader(false); // Loaderni bu yerda o'chiramiz
+  }
+};
+
+
 
   const fetchDropdownData = async () => {
     try {
