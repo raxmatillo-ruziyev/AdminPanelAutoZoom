@@ -31,7 +31,6 @@ const Cars = () => {
   const [postImage3, setPostImage3] = useState(null);
   const token = localStorage.getItem("access_token");
 
-  // Fetching data for the cars list
   const getData = () => {
     setLoader(true);
     fetch(CarsUrl)
@@ -44,7 +43,6 @@ const Cars = () => {
       .finally(() => setLoader(false));
   };
 
-  // Fetching data for dropdowns
   const fetchDropdownData = async () => {
     try {
       const [brandsRes, citiesRes, categoriesRes, modelsRes, locationsRes] = await Promise.all([
@@ -70,7 +68,6 @@ const Cars = () => {
     fetchDropdownData();
   }, []);
 
-  // Handling form submission for adding or editing cars
   const handleFormSubmit = () => {
     const formData = new FormData();
     formData.append('color', postColor);
@@ -94,7 +91,6 @@ const Cars = () => {
     formData.append('price_in_aed_sale', form.getFieldValue('price_in_aed_sale'));
     formData.append('price_in_usd_sale', form.getFieldValue('price_in_usd_sale'));
     formData.append('inclusive', form.getFieldValue('inclusive'));
-    // formData.append('cover', form.getFieldValue('cover'));
     formData.append('seconds', form.getFieldValue('seconds'));
     formData.append('cover', postImage3);
 
@@ -130,7 +126,6 @@ const Cars = () => {
       .catch(err => console.log(err));
   };
 
-  // Handling deletion of cars
   const deleteData = (id) => {
     fetch(`${CarsUrl}/${id}`, {
       method: 'DELETE',
@@ -198,9 +193,9 @@ const Cars = () => {
   const columns = [
     { title: "Id", dataIndex: "index", key: "index" },
     { title: "Color", dataIndex: "color", key: "color" },
-    // { title: "Model", dataIndex: "model", key: "model" },
+
     { title: "Brand", dataIndex: "brand", key: "brand" },
-    // { title: "Category", dataIndex: "category", key: "category" },
+
     { title: "City", dataIndex: "city", key: "city" },
     { title: "Image", dataIndex: "image", key: "image" },
     { title: "Action", dataIndex: "action", key: "action" },
@@ -222,7 +217,6 @@ const Cars = () => {
     color: car.color,
     model: car.model.name,
     brand: car.brand.title,
-    // category: car.category.name_en,
     city: car.city.name,
     image: car.car_images.length > 0 ? (
       <Image width={110} height={100} src={`${imageURL}${car.car_images[0].image.src}`} alt={car.title} />
@@ -248,7 +242,7 @@ const Cars = () => {
       </Flex>
     ),
   }));
-  
+
 
   return (
     <div>
@@ -451,7 +445,7 @@ const Cars = () => {
             <Form.Item
               label="Inclusive"
               name="inclusive"
-              valuePropName="checked"  // Switch ning boolean qiymatini to'g'ridan to'g'ri boshqaradi
+              valuePropName="checked"
             >
               <Switch onChange={(checked) => form.setFieldsValue({ inclusive: checked ? 'true' : 'false' })} />
             </Form.Item>
@@ -469,17 +463,17 @@ const Cars = () => {
                 listType="picture-card"
                 customRequest={({ file, onSuccess, onError }) => {
                   try {
-                    // Fayl yuklash jarayoni, masalan, serverga yuborish
-                    onSuccess("ok"); // Agar muvaffaqiyatli bo'lsa
+
+                    onSuccess("ok");
                   } catch (error) {
-                    onError(error); // Xatolik yuz bersa
+                    onError(error);
                   }
                 }}
                 onChange={(e) => {
-                  console.log("Uploaded file list:", e.fileList); // Yuklangan fayllarni konsolga chiqarish
-                  setPostImage3(e.file.originFileObj); // Yuklangan faylni olish
+                  console.log("Uploaded file list:", e.fileList);
+                  setPostImage3(e.file.originFileObj);
                 }}
-                showUploadList={{ showPreviewIcon: true, showRemoveIcon: true }} // Yuklangan fayllarni ko'rsatish uchun
+                showUploadList={{ showPreviewIcon: true, showRemoveIcon: true }}
               >
                 <button
                   style={{
@@ -504,7 +498,7 @@ const Cars = () => {
               name="images"
               valuePropName="fileList"
               getValueFromEvent={(e) => {
-                // Fayllar ro'yxatini qaytarish
+
                 return e.fileList.map((file) => file.originFileObj);
               }}
             >
@@ -513,17 +507,17 @@ const Cars = () => {
                 listType="picture-card"
                 customRequest={({ file, onSuccess, onError }) => {
                   try {
-                    // Fayl yuklash jarayoni, masalan, serverga yuborish
-                    onSuccess("ok"); // Agar muvaffaqiyatli bo'lsa
+
+                    onSuccess("ok");
                   } catch (error) {
-                    onError(error); // Xatolik yuz bersa
+                    onError(error);
                   }
                 }}
                 onChange={(e) => {
-                  console.log("Uploaded file list:", e.fileList); // Yuklangan fayllarni konsolga chiqarish
-                  setPostImage(e.file.originFileObj); // Yuklangan faylni olish
+                  console.log("Uploaded file list:", e.fileList);
+                  setPostImage(e.file.originFileObj);
                 }}
-                showUploadList={{ showPreviewIcon: true, showRemoveIcon: true }} // Yuklangan fayllarni ko'rsatish uchun
+                showUploadList={{ showPreviewIcon: true, showRemoveIcon: true }}
               >
                 <button
                   style={{
@@ -549,7 +543,7 @@ const Cars = () => {
               name="images2"
               valuePropName="fileList"
               getValueFromEvent={({ file }) => {
-                return [file.originFileObj]; // Fayl ob'ektini qaytaruvchi array
+                return [file.originFileObj];
               }}
             >
               <Upload
@@ -557,14 +551,14 @@ const Cars = () => {
                 listType="picture-card"
                 customRequest={({ file, onSuccess, onError }) => {
                   try {
-                    // Fayl yuklash jarayoni bu yerda amalga oshiriladi
-                    onSuccess("ok"); // Agar muvaffaqiyatli bo'lsa
+
+                    onSuccess("ok");
                   } catch (error) {
-                    onError(error); // Xatolik yuz bersa
+                    onError(error);
                   }
                 }}
-                onChange={(e) => setPostImage2(e.file.originFileObj)} // Faylni olish va state-ga yozish
-                showUploadList={{ showPreviewIcon: true, showRemoveIcon: true }} // Fayllarni ko'rsatish
+                onChange={(e) => setPostImage2(e.file.originFileObj)}
+                showUploadList={{ showPreviewIcon: true, showRemoveIcon: true }}
               >
                 <button
                   style={{
