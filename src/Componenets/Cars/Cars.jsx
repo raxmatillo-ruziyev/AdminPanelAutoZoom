@@ -410,7 +410,7 @@ const getData = async () => {
               name="seconds"
               rules={[{ required: true, message: "Please input the seconds!" }]}
             >
-              <Input type='number' />
+              <Input type='number' min={1} />
             </Form.Item>
 
             <Form.Item
