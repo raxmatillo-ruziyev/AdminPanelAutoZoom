@@ -361,7 +361,7 @@ const getData = async () => {
               name="max_speed"
               rules={[{ required: true, message: "Please input the max speed!" }]}
             >
-              <Input type='number' />
+              <Input type='number'  min={1}/>
             </Form.Item>
             <Form.Item
               label="Max People"
