@@ -382,7 +382,7 @@ const getData = async () => {
               name="motor"
               rules={[{ required: true, message: "Please input the motor!" }]}
             >
-              <Input type='number' />
+              <Input type='number' min={1} />
             </Form.Item>
             <Form.Item
               label="Drive Side"
