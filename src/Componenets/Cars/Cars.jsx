@@ -41,7 +41,7 @@ const getData = async () => {
     const response = await fetch(CarsUrl);
     const data = await response.json();
 
-    if (token && data.data) { // Token va data.data mavjudligini tekshirish
+    if (token) { // Token va data.data mavjudligini tekshirish
       setData(data.data);
       console.log(data.data[0].car_images[0].image.src);
     } else {
@@ -292,7 +292,7 @@ const getData = async () => {
               name="color"
               rules={[{ required: true, message: "Please input the car color!" }]}
             >
-              <Input value={postColor} onChange={(e) => setPostColor(e.target.value)} />
+              <Input  value={postColor} onChange={(e) => setPostColor(e.target.value)} />
             </Form.Item>
             <Form.Item
               label="Brand"
@@ -354,35 +354,35 @@ const getData = async () => {
               name="year"
               rules={[{ required: true, message: "Please input the year!" }]}
             >
-              <Input />
+              <Input type='number' />
             </Form.Item>
             <Form.Item
               label="Max Speed"
               name="max_speed"
               rules={[{ required: true, message: "Please input the max speed!" }]}
             >
-              <Input />
+              <Input type='number' />
             </Form.Item>
             <Form.Item
               label="Max People"
               name="max_people"
               rules={[{ required: true, message: "Please input the max people!" }]}
             >
-              <Input />
+              <Input type='number' />
             </Form.Item>
             <Form.Item
               label="Transmission"
               name="transmission"
               rules={[{ required: true, message: "Please input the transmission!" }]}
             >
-              <Input />
+              <Input  type='number'/>
             </Form.Item>
             <Form.Item
               label="Motor"
               name="motor"
               rules={[{ required: true, message: "Please input the motor!" }]}
             >
-              <Input />
+              <Input type='number' />
             </Form.Item>
             <Form.Item
               label="Drive Side"
@@ -396,21 +396,21 @@ const getData = async () => {
               name="petrol"
               rules={[{ required: true, message: "Please input the petrol!" }]}
             >
-              <Input />
+              <Input  type='number'/>
             </Form.Item>
             <Form.Item
               label="Limit Per Day"
               name="limitperday"
               rules={[{ required: true, message: "Please input the limit per day!" }]}
             >
-              <Input />
+              <Input  type='number'/>
             </Form.Item>
             <Form.Item
               label="Second"
               name="seconds"
               rules={[{ required: true, message: "Please input the seconds!" }]}
             >
-              <Input />
+              <Input type='number' />
             </Form.Item>
 
             <Form.Item
@@ -418,42 +418,42 @@ const getData = async () => {
               name="deposit"
               rules={[{ required: true, message: "Please input the deposit!" }]}
             >
-              <Input />
+              <Input  type='number'/>
             </Form.Item>
             <Form.Item
               label="Premium Protection"
               name="premium_protection"
               rules={[{ required: true, message: "Please input the premium protection!" }]}
             >
-              <Input />
+              <Input  type='number'/>
             </Form.Item>
             <Form.Item
               label="Price in AED"
               name="price_in_aed"
               rules={[{ required: true, message: "Please input the price in AED!" }]}
             >
-              <Input />
+              <Input  type='number'/>
             </Form.Item>
             <Form.Item
               label="Price in USD"
               name="price_in_usd"
               rules={[{ required: true, message: "Please input the price in USD!" }]}
             >
-              <Input />
+              <Input type='number' />
             </Form.Item>
             <Form.Item
               label="Price in AED Sale"
               name="price_in_aed_sale"
               rules={[{ required: true, message: "Please input the price in AED sale!" }]}
             >
-              <Input />
+              <Input type='number' />
             </Form.Item>
             <Form.Item
               label="Price in USD Sale"
               name="price_in_usd_sale"
               rules={[{ required: true, message: "Please input the price in USD sale!" }]}
             >
-              <Input />
+              <Input  type='number'/>
             </Form.Item>
             <Form.Item
               label="Inclusive"
