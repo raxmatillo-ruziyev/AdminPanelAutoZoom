@@ -446,14 +446,14 @@ const getData = async () => {
               name="price_in_aed_sale"
               rules={[{ required: true, message: "Please input the price in AED sale!" }]}
             >
-              <Input type='number' />
+              <Input type='number'  />
             </Form.Item>
             <Form.Item
               label="Price in USD Sale"
               name="price_in_usd_sale"
               rules={[{ required: true, message: "Please input the price in USD sale!" }]}
             >
-              <Input  type='number'/>
+              <Input  type='number' min={1}/>
             </Form.Item>
             <Form.Item
               label="Inclusive"
