@@ -403,7 +403,7 @@ const getData = async () => {
               name="limitperday"
               rules={[{ required: true, message: "Please input the limit per day!" }]}
             >
-              <Input  type='number'/>
+              <Input  type='number' min={1}/>
             </Form.Item>
             <Form.Item
               label="Second"
