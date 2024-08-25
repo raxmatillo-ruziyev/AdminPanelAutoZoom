@@ -354,7 +354,7 @@ const getData = async () => {
               name="year"
               rules={[{ required: true, message: "Please input the year!" }]}
             >
-              <Input type='number' />
+              <Input type='number'min={1} />
             </Form.Item>
             <Form.Item
               label="Max Speed"
