@@ -425,7 +425,7 @@ const getData = async () => {
               name="premium_protection"
               rules={[{ required: true, message: "Please input the premium protection!" }]}
             >
-              <Input  type='number'/>
+              <Input  type='number' min={1}/>
             </Form.Item>
             <Form.Item
               label="Price in AED"
