@@ -41,7 +41,7 @@ const getData = async () => {
     const response = await fetch(CarsUrl);
     const data = await response.json();
 
-    if (token && data.data) { // Token va data.data mavjudligini tekshirish
+    if (token && data?.data) { // Token va data.data mavjudligini tekshirish
       setData(data.data);
       console.log(data.data[0].car_images[0].image.src);
     } else {

@@ -15,6 +15,7 @@ function Model() {
 const navigate =useNavigate()
   // Fetch models
   const getModels = () => {
+
     fetch(Url)
       .then((response) => response.json())
       .then((res) => {
@@ -29,6 +30,7 @@ const navigate =useNavigate()
        }
       })
       .catch((error) => console.error('Error fetching models:', error));
+   
   };
 
   // Modal
