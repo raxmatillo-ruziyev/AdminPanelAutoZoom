@@ -33,26 +33,26 @@ const Cars = () => {
   const token = localStorage.getItem("access_token");
 
 
-const navigate =useNavigate()
-const getData = async () => {
-  setLoader(true); // Loaderni bu yerda yoqamiz
+  const navigate = useNavigate()
+  const getData = async () => {
+    setLoader(true); // Loaderni bu yerda yoqamiz
 
-  try {
-    const response = await fetch(CarsUrl);
-    const data = await response.json();
+    try {
+      const response = await fetch(CarsUrl);
+      const data = await response.json();
 
-    if (token && data?.data) { // Token va data.data mavjudligini tekshirish
-      setData(data.data);
-      console.log(data.data[0].car_images[0].image.src);
-    } else {
-      navigate("/");
+      if (token) { // Token va data.data mavjudligini tekshirish
+        setData(data.data);
+        console.log(data.data[0].car_images[0].image.src);
+      } else {
+        navigate("/");
+      }
+    } catch (err) {
+      message.error(err.toString());
+    } finally {
+      setLoader(false); // Loaderni bu yerda o'chiramiz
     }
-  } catch (err) {
-    message.error(err.toString());
-  } finally {
-    setLoader(false); // Loaderni bu yerda o'chiramiz
-  }
-};
+  };
 
 
 
@@ -292,7 +292,7 @@ const getData = async () => {
               name="color"
               rules={[{ required: true, message: "Please input the car color!" }]}
             >
-              <Input  value={postColor} onChange={(e) => setPostColor(e.target.value)} />
+              <Input value={postColor} onChange={(e) => setPostColor(e.target.value)} />
             </Form.Item>
             <Form.Item
               label="Brand"
@@ -352,63 +352,97 @@ const getData = async () => {
             <Form.Item
               label="Year"
               name="year"
-              rules={[{ required: true, message: "Please input the year!" }]}
+              rules={[
+                { required: true, message: "Please input the year!" }
+                // { type: 'number', message: "Year must be a number!" }
+              ]}
             >
-              <Input type='number'min={1} />
+              <Input type='number' min={1} />
             </Form.Item>
+
             <Form.Item
               label="Max Speed"
               name="max_speed"
-              rules={[{ required: true, message: "Please input the max speed!" }]}
+              rules={[
+                { required: true, message: "Please input the max speed!" },
+                // { type: 'number', message: "Max Speed must be a number!" }
+              ]}
             >
-              <Input type='number'  min={1}/>
+              <Input type='number' min={1} />
             </Form.Item>
+
             <Form.Item
               label="Max People"
               name="max_people"
-              rules={[{ required: true, message: "Please input the max people!" }]}
+              rules={[
+                { required: true, message: "Please input the max people!" },
+                // { type: 'number', message: "Max People must be a number!" }
+              ]}
             >
               <Input type='number' min={1} />
             </Form.Item>
+
             <Form.Item
               label="Transmission"
               name="transmission"
-              rules={[{ required: true, message: "Please input the transmission!" }]}
-            >
-              <Input  type='number' min={1}/>
-            </Form.Item>
-            <Form.Item
-              label="Motor"
-              name="motor"
-              rules={[{ required: true, message: "Please input the motor!" }]}
+              rules={[
+                { required: true, message: "Please input the transmission!" },
+                // { type: 'number', message: "Transmission must be a number!" }
+              ]}
             >
               <Input type='number' min={1} />
             </Form.Item>
+
+            <Form.Item
+              label="Motor"
+              name="motor"
+              rules={[
+                { required: true, message: "Please input the motor!" },
+                // { type: 'number', message: "Motor must be a number!" }
+              ]}
+            >
+              <Input type='number' min={1} />
+            </Form.Item>
+
             <Form.Item
               label="Drive Side"
               name="drive_side"
-              rules={[{ required: true, message: "Please input the drive side!" }]}
+              rules={[
+                { required: true, message: "Please input the drive side!" },
+              ]}
             >
-              <Input />
+              <Input type='number'  min={1}/>
             </Form.Item>
+
             <Form.Item
               label="Petrol"
               name="petrol"
-              rules={[{ required: true, message: "Please input the petrol!" }]}
+              rules={[
+                { required: true, message: "Please input the petrol!" },
+                // { type: 'number', message: "Petrol must be a number!" }
+              ]}
             >
-              <Input  type='number' min={1}/>
+              <Input type='number' min={1} />
             </Form.Item>
+
             <Form.Item
               label="Limit Per Day"
               name="limitperday"
-              rules={[{ required: true, message: "Please input the limit per day!" }]}
+              rules={[
+                { required: true, message: "Please input the limit per day!" },
+                // { type: 'number', message: "Limit Per Day must be a number!" }
+              ]}
             >
-              <Input  type='number' min={1}/>
+              <Input type='number' min={1} />
             </Form.Item>
+
             <Form.Item
               label="Second"
               name="seconds"
-              rules={[{ required: true, message: "Please input the seconds!" }]}
+              rules={[
+                { required: true, message: "Please input the seconds!" },
+                // { type: 'number', message: "Seconds must be a number!" }
+              ]}
             >
               <Input type='number' min={1} />
             </Form.Item>
@@ -416,45 +450,69 @@ const getData = async () => {
             <Form.Item
               label="Deposit"
               name="deposit"
-              rules={[{ required: true, message: "Please input the deposit!" }]}
+              rules={[
+                { required: true, message: "Please input the deposit!" },
+                // { type: 'number', message: "Deposit must be a number!" }
+              ]}
             >
-              <Input  type='number' min={1}/>
+              <Input type='number' min={1} />
             </Form.Item>
+
             <Form.Item
               label="Premium Protection"
               name="premium_protection"
-              rules={[{ required: true, message: "Please input the premium protection!" }]}
+              rules={[
+                { required: true, message: "Please input the premium protection!" },
+                // { type: 'number', message: "Premium Protection must be a number!" }
+              ]}
             >
-              <Input  type='number' min={1}/>
+              <Input type='number' min={1} />
             </Form.Item>
+
             <Form.Item
               label="Price in AED"
               name="price_in_aed"
-              rules={[{ required: true, message: "Please input the price in AED!" }]}
+              rules={[
+                { required: true, message: "Please input the price in AED!" },
+                // { type: 'number', message: "Price in AED must be a number!" }
+              ]}
             >
-              <Input  type='number' min={1}/>
+              <Input type='number' min={1} />
             </Form.Item>
+
             <Form.Item
               label="Price in USD"
               name="price_in_usd"
-              rules={[{ required: true, message: "Please input the price in USD!" }]}
+              rules={[
+                { required: true, message: "Please input the price in USD!" },
+                // { type: 'number', message: "Price in USD must be a number!" }
+              ]}
             >
               <Input type='number' min={1} />
             </Form.Item>
+
             <Form.Item
               label="Price in AED Sale"
               name="price_in_aed_sale"
-              rules={[{ required: true, message: "Please input the price in AED sale!" }]}
+              rules={[
+                { required: true, message: "Please input the price in AED sale!" },
+                // { type: 'number', message: "Price in AED Sale must be a number!" }
+              ]}
             >
               <Input type='number' min={1} />
             </Form.Item>
+
             <Form.Item
               label="Price in USD Sale"
               name="price_in_usd_sale"
-              rules={[{ required: true, message: "Please input the price in USD sale!" }]}
+              rules={[
+                { required: true, message: "Please input the price in USD sale!" },
+                // { type: 'number', message: "Price in USD Sale must be a number!" }
+              ]}
             >
-              <Input  type='number' min={1}/>
+              <Input type='number' min={1} />
             </Form.Item>
+            
             <Form.Item
               label="Inclusive"
               name="inclusive"
